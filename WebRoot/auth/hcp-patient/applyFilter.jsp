@@ -119,14 +119,34 @@ session.setAttribute("messages", messages);
    						reset();
    					})
    					
+   					$("#save").click(function(){
+   						var sender = $("#sender").val();
+   						var subject = $("#subject").val();
+   						var includes = $("#includes").val();
+   						var excludes = $("#excludes").val();
+   						var start_date = $("#start_date").val();
+   						var end_date = $("#end_date").val();
+   					
+   					})
+   					
    					
    					$("#test_search").click(function(){
+   						
+   						var table= $("#mailbox > tbody");
+   						table.find('tr').each(function(i){
+   							var $td = $(this).find('td')
+   							$td.each(function(j){
+   								$td.closest("tr").show();
+   							})
+   						})
+   						/**reset();**/
    						var sender = $("#sender").val().toLowerCase();
    						var subject = $("#subject").val();
    						var includes = $("#includes").val();
    						var excludes = $("#excludes").val();
-   						var timestamp = $("#timestamp").val();
-   						console.log("hiiii");
+   						var start_date = $("#start_date").val();
+   						var end_date = $("#end_date").val();
+   						console.log("hllllli");
    						
    						$("#mailbox").show();
    						
@@ -164,23 +184,20 @@ session.setAttribute("messages", messages);
    					});
    					
        					
-   					
-						function searcher(td, filter){
-   							col_val = td.html().toLowerCase();
-							if (filter==""){
-								//td.closest("tr").show();
-							}
-							
-							else if (filter.localeCompare(col_val)!=0)
-							{
-								console.log("testing.");
-								td.closest("tr").hide();
-							}
-   						}
-       			
+  					
+					function searcher(td, filter){
+  							col_val = td.html().toLowerCase();
+						if (filter==""){
+							//td.closest("tr").show();
+						}
+						
+						else if (filter.localeCompare(col_val)!=0)
+						{
+							console.log("testing.");
+							td.closest("tr").hide();
+						}
+  					}
    				});
-   				
-  
 
 			</script>
 			<style type="text/css" title="currentStyle">
@@ -210,11 +227,7 @@ session.setAttribute("messages", messages);
 			</tbody>
 		</table>-->
 
-<br>
-<br>
-<br>
 
-  
 <form>
   <table>
     <tr>
@@ -234,9 +247,14 @@ session.setAttribute("messages", messages);
       <td align="left"><input type="text" id="excludes" name="excludes" /></td>
     </tr>
     <tr>
-      <td align="right">Timestamp:</td>
-      <td align="left"><input type="text" id="timestamp" name="timestamp" /></td>
+      <td align="right">Start Date:</td>
+      <td align="left"><input type="text" id="start_date" name="timestamp" /></td>
     </tr>
+    <tr>
+      <td align="right">End Date:</td>
+      <td align="left"><input type="text" id="end_date" name="timestamp" /></td>
+    </tr>
+    
     <tr>
     	<td align="right"><input type="button" id="test_search" value="Test Search"/></td>
   		<td align="center"><input type="button" id="save" value="Save"/></td>
